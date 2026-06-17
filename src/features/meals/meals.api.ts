@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiFetch } from '@/lib/api';
 import { qk } from '@/lib/queryClient';
-import type { Meal, MealItemInput, MealType } from '@/types/api';
+import type { FoodInput, Meal, MealType } from '@/types/api';
 
 export function useMeals(date: string) {
   return useQuery({
@@ -14,7 +14,7 @@ export interface CreateMealInput {
   name: string;
   mealType?: MealType;
   loggedFor?: string;
-  items: MealItemInput[];
+  items: FoodInput[];
 }
 
 export function useCreateMeal() {

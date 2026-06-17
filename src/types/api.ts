@@ -38,6 +38,12 @@ export interface MealItem {
 
 export type MealItemInput = Omit<MealItem, 'id'>;
 
+/** What the user types when logging a meal — AI computes the macros. */
+export interface FoodInput {
+  name: string;
+  grams?: number;
+}
+
 export interface MacroTotals {
   calories: number;
   proteins: number;
@@ -75,3 +81,21 @@ export interface DashboardResponse {
     daysLogged: number;
   };
 }
+
+export interface RecommendationResponse {
+  recommendation: string;
+  totals: MacroTotals;
+}
+
+export interface Profile {
+  id: string;
+  email: string;
+  displayName: string | null;
+  goalType: string | null;
+  dailyCalorieGoal: number | null;
+  proteinTargetG: number | null;
+  fatTargetG: number | null;
+  carbTargetG: number | null;
+}
+
+export type ProfileUpdate = Partial<Omit<Profile, 'id' | 'email'>>;

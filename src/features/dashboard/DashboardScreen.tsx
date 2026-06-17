@@ -13,6 +13,7 @@ import {
   YAxis,
 } from 'recharts';
 import { useDashboard } from './dashboard.api';
+import { RecommendationCard } from './RecommendationCard';
 import { LogWeightSheet } from '@/features/weight/LogWeightSheet';
 
 const fmtDay = (iso: string) => iso.slice(5).replace('-', '/'); // MM/DD
@@ -134,6 +135,8 @@ export function DashboardScreen() {
           </BarChart>
         </ResponsiveContainer>
       </Card>
+
+      <RecommendationCard />
 
       <button
         onClick={() => setShowWeight(true)}
