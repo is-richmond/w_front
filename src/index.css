@@ -12,11 +12,42 @@ body,
   height: 100%;
 }
 
+html {
+  /* Stop iOS from auto-resizing text + kill the rubber-band page bounce. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
 body {
   @apply bg-slate-950 text-slate-100 antialiased;
   /* Respect iOS safe areas for the bottom nav / notch. */
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
     env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* No horizontal scroll, no pull-to-refresh / overscroll bounce. */
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  /* `manipulation` removes the double-tap-to-zoom delay; combined with the
+     viewport meta this disables pinch + double-tap zoom app-wide. */
+  touch-action: manipulation;
+  /* Native-app feel: don't let long-press select UI chrome / labels. */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable selection + caret in actual text fields. */
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Inner scroll areas (diary list, bottom sheets) keep momentum scrolling
+   without leaking the bounce to the page behind them. */
+.scroll-area,
+[data-scroll] {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Disable the tap-highlight flash on the PIN keypad etc. */
